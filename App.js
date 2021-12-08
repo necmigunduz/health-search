@@ -1,19 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SearchBar from './Views/SearchBar';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import SearchForm from './Views/SearchForm';
+import SearchResults from './Views/SearchResults';
 
-export default function App() {
-  return (
-    <SearchBar />
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: SearchForm
   },
+  Results: {
+    screen: SearchResults
+  }
 });
+
+const AppContainer = createAppContainer(AppNavigator);
+
+
+export default class App extends Component {
+  render() {
+    return (<AppContainer />);
+  }
+  
+}
